@@ -1,0 +1,92 @@
+<div class="top-buttons">
+  <button class="btn btn-primary" routerLink="/view-equations">
+    View Equations
+  </button>
+  <div class="clear"></div>
+</div>
+
+<div class="equations-header">
+  <h1 *ngIf="!isEdit">Create Equation</h1>
+  <h1 *ngIf="isEdit">Edit - {{ editEquation?.name }}</h1>
+</div>
+<div class="row">
+  <div class="col-md-4 left-side-variables">
+    <h2>Variables</h2>
+    <ul class="list-group">
+      <li
+        *ngFor="let v of leftVariables"
+        class="list-group-item"
+        (click)="addVariable($event)"
+      >
+        {{ v.value }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-4 operators">
+    <h2>Operators</h2>
+    <ul class="list-group">
+      <li class="list-group-item" (click)="addOperator($event)">(</li>
+      <li class="list-group-item" (click)="addOperator($event)">)</li>
+      <li class="list-group-item" (click)="addOperator($event)">/</li>
+      <li class="list-group-item" (click)="addOperator($event)">-</li>
+      <li class="list-group-item" (click)="addOperator($event)">*</li>
+      <li class="list-group-item" (click)="addOperator($event)">+</li>
+      <li class="list-group-item" (click)="addOperator($event)">=</li>
+    </ul>
+  </div>
+  <div class="col-md-4 right-side-variables">
+    <h2>Variables</h2>
+    <ul class="list-group">
+      <li
+        *ngFor="let v of rightVariables"
+        class="list-group-item"
+        (click)="addVariable($event)"
+      >
+        {{ v.value }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- the equation -->
+<div class="display-equation-wrapper">
+  <h4>Equation Formula</h4>
+  <div *ngIf="equation.length != 0" class="display-equation">
+    <div class="equation" *ngFor="let item of equation; let index = index">
+      <div class="equation-item" (click)="removeItem(index, item)">
+        <span>{{ item }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- equation name -->
+<div class="equation-name">
+  <label for="name">Equation Name:</label>
+  <input type="text" [(ngModel)]="eqName" placeholder="Name of the equation" />
+</div>
+<!-- equation description -->
+<div class="equation-description">
+  <label for="description">Equation Description:</label>
+  <textarea [(ngModel)]="eqDescription"></textarea>
+</div>
+
+<!-- display messages -->
+<div class="messages">
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+</div>
+
+<!-- save button for add and edit -->
+<div *ngIf="equation.length != 0" class="save-equation">
+  <button *ngIf="!isEdit" class="btn btn-primary" (click)="saveEquation()">
+    Save
+  </button>
+  <button *ngIf="isEdit" class="btn btn-primary" (click)="editEquationMethod()">
+    Save
+  </button>
+</div>

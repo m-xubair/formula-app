@@ -1,0 +1,91 @@
+<div class="top-buttons">
+  <button class="btn btn-primary" routerLink="/manage-equations">
+    Create New Equation
+  </button>
+  <div class="clear"></div>
+</div>
+
+<div class="equations-header">
+  <h1>Equations</h1>
+</div>
+<table
+  *ngIf="equations.length != 0; else elseBlock"
+  class="table equation-table"
+>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th
+        class="selectable"
+        scope="col"
+        (click)="sortTable('name'); sortReverse = !sortReverse"
+      >
+        Name
+      </th>
+      <th
+        class="selectable"
+        scope="col"
+        (click)="sortTable('description'); sortReverse = !sortReverse"
+      >
+        Description
+      </th>
+      <th
+        class="selectable"
+        scope="col"
+        (click)="sortTable('equation'); sortReverse = !sortReverse"
+      >
+        Equation
+      </th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let eq of equations; let index = index">
+      <th scope="row">{{ index + 1 }}</th>
+      <td>{{ eq.name }}</td>
+      <td>{{ eq.description }}</td>
+      <td>
+        <div class="display-equation">
+          <div
+            class="equation"
+            *ngFor="let item of eq.equation; let index = index"
+          >
+            <div class="equation-item">
+              <span>{{ item }}</span>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-sm btn-success"
+          [routerLink]="['/manage-equations', eq._id]"
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          (click)="deleteEquation(eq._id)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- loading template -->
+<div class="my-container">
+  <ngx-loading [show]="loading"></ngx-loading>
+</div>
+
+<ng-template #elseBlock>
+  <p class="alert alert-danger">
+    No equation is added yet! Create equations first.
+    <a routerLink="/manage-equations">
+      Create New Equation
+    </a>
+  </p>
+</ng-template>

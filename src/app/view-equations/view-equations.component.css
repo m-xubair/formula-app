@@ -1,0 +1,56 @@
+/* General */
+.clear {
+  clear: both;
+}
+/* top buttons */
+.top-buttons {
+  margin-top: 10px;
+}
+.top-buttons button {
+  float: right;
+  padding: 10px 35px;
+  font-size: 18px;
+  margin: 10px auto;
+}
+/* header */
+.equations-header {
+  text-align: center;
+  padding: 0px 0px 20px;
+}
+
+/* display equation */
+.display-equation-wrapper {
+  padding: 27px 0;
+}
+.display-equation {
+  display: inline-flex;
+}
+.equation .equation-item {
+  padding: 2px;
+}
+
+.alert {
+  text-align: center;
+}
+.equation-table tr td {
+  word-break: break-all;
+}
+.equation-table tr td:nth-child(2) {
+  width: 150px;
+  word-break: break-all;
+}
+.equation-table tr td:nth-child(3) {
+  width: 300px;
+  word-break: break-all;
+}
+.equation-table tr td:nth-child(4) {
+  width: 450px;
+  word-break: break-all;
+}
+.equation-table tr td:last-child {
+  text-align: right;
+  padding-right: 0px;
+}
+.equation-table tr td button {
+  margin: 0 0 0 5px;
+}
